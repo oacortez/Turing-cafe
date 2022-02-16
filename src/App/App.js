@@ -17,6 +17,10 @@ class App extends Component {
       .then(data => this.setState({ allReservations: data}))
   }
 
+  addReservation = (newReservation) => {
+    this.setState({allReservations: [...this.state.allReservations, newReservation]})
+  }
+
   cancelReservation = (id) => {
     const cancelReservation = this.state.allReservations.filter(valueId => valueId.id !== id)
 
@@ -27,7 +31,9 @@ class App extends Component {
     return (
       <div className="App">
         <h1 className='app-title'>Turing Cafe Reservations</h1>
-        <CardContainer reservations={this.state.allReservations} cancelReservation={this.cancelReservation}/> 
+        <Form addReservation={this.addReservation}/>
+        {!this.state.allReservations.length ? <h1>Please add a new reservation</h1> :<CardContainer reservations={this.state.allReservations} cancelReservation={this.cancelReservation}/>}
+         
       </div>
     )
   }
