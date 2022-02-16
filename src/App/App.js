@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CardContainer from '../Components/CardContainer'
 import Form from '../Components/Form';
+import {fetchData, postReservation, deleteReservation} from '../ApiCalls';
 import './App.css';
 
 class App extends Component {
@@ -12,19 +13,20 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    fetch('http://localhost:3001/api/v1/reservations')
-      .then(response => response.json())
+      fetchData()
       .then(data => this.setState({ allReservations: data}))
   }
 
   addReservation = (newReservation) => {
     this.setState({allReservations: [...this.state.allReservations, newReservation]})
+    postReservation(newReservation)
   }
 
   cancelReservation = (id) => {
     const cancelReservation = this.state.allReservations.filter(valueId => valueId.id !== id)
 
     this.setState({allReservations: cancelReservation})
+    deleteReservation(id)
   }
 
   render() {
