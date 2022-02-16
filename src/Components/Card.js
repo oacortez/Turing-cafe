@@ -1,7 +1,7 @@
 import React from 'react'
 import './Card.css';
 
-const Card = ({id, name, date, time, number}) => {
+const Card = ({id, name, date, time, number, deleteReservation}) => {
 
   return (
     <section className='card'>
@@ -9,7 +9,7 @@ const Card = ({id, name, date, time, number}) => {
       <p>{date}</p>
       <p>{time}</p>
       <p>Number of guest: {number}</p>
-      <button>Cancel</button>
+      <button onClick={() => deleteReservation(id)}>Cancel</button>
     </section>
   )
 }
