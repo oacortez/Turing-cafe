@@ -51,7 +51,7 @@ class Form extends Component {
       
         <input
           type='text'
-          placeholder='Please eneter time ex: 00:00'
+          placeholder='Please enter time ex: 00:00'
           name='time'
           value={this.state.time}
           onChange={event => this.handleChange(event)}
